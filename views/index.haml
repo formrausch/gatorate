@@ -1,0 +1,10 @@
+!!!5
+%html
+  %head
+  %body
+    %a{:href => '/on'} ON
+    %a{:href => '/off'} OFF
+    -if @door_closed
+      Zu ist die Tür!
+    - else
+      Auf ist die Tür!
