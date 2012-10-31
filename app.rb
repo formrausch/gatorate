@@ -4,7 +4,7 @@ require "sinatra/reloader"
 require 'wiringpi'
 require 'dcell'
 
-DCell.start :id => "app", :addr => "tcp://127.0.0.1:4001", :directory => {:id => "door", :addr => "tcp://127.0.0.1:4000"}
+DCell.start :id => "app", :addr => "tcp://127.0.0.1:4001", :directory => {:id => "door", :addr => "tcp://10.0.1.164:4000"}
 Node = DCell::Node["door"]  
 
 class DoorORama < Sinatra::Base

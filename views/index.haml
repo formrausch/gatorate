@@ -1,10 +1,27 @@
 !!!5
 %html
   %head
+    :css
+      body{
+        background-color: black;
+      }
+      
+      div.lock{
+        width: 770px;
+        height: 840px;
+        margin: 0 auto
+      }
+      
+      div.opened {
+        background: black url(lock.gif) no-repeat -770px 0;
+      }
+      
+      div.locked {
+        background: black url(lock.gif) no-repeat 0 0;
+      }
+      
   %body
-    %a{:href => '/on'} ON
-    %a{:href => '/off'} OFF
     -if @door_closed
-      Zu ist die Tür!
+      .lock.locked
     - else
-      Auf ist die Tür!
+      .lock.opened
