@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require 'thin'
+require './lib/web.rb'
+require './lib/stemcell'
+
+stemcell "web.tom.local", "127.0.0.1", 9089
+
+if $0 == __FILE__
+  require 'rack'
+  require 'rack/showexceptions'
+  Rack::Handler::Thin.run \
+    Rack::ShowExceptions.new(Rack::Lint.new(Web.new)),
+    :Port => 9293
+end

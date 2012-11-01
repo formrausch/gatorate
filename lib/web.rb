@@ -1,14 +1,9 @@
 require 'sinatra/base'
 require 'haml'
 require 'json'
-require './stemcell'
-
-stemcell "web.tom.local", "127.0.0.1", 9080
+require 'dcell'
 
 class Web < Sinatra::Base
-  configure do
-  end
-
   get '/?' do
     @nodes = DCell::Node.all
     haml :index
