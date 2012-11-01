@@ -48,6 +48,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dcell (= 0.10.0)
+  dcell (~> 0.10.0)
   haml
   sinatra
