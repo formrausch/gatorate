@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
+
 require 'bundler/setup'
-require './stemcell'
+require './lib/stemcell'
 
 class Door
   include Celluloid
