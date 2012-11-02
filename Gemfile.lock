@@ -1,26 +1,33 @@
+GIT
+  remote: git://github.com/celluloid/dcell.git
+  revision: b76d56e5b508cf5b2bf87abe746e1af03812798e
+  specs:
+    dcell (0.12.0.pre)
+      celluloid (~> 0.12.0)
+      celluloid-zmq (~> 0.12.0)
+      moneta
+      redis
+      redis-namespace
+      reel
+
 GEM
   remote: http://rubygems.org/
   specs:
-    backports (2.6.1)
-    celluloid (0.10.0)
-    celluloid-io (0.10.0)
-      celluloid (~> 0.10.0)
-      nio4r (>= 0.3.1)
-    celluloid-zmq (0.10.0)
-      celluloid (~> 0.10.0)
-      celluloid-io (~> 0.10.0)
+    celluloid (0.12.3)
+      facter (>= 1.6.12)
+      timers (>= 1.0.0)
+    celluloid-io (0.12.0)
+      celluloid (~> 0.12.0)
+      nio4r (>= 0.4.0)
+    celluloid-zmq (0.12.0)
+      celluloid (~> 0.12.0)
+      celluloid-io (~> 0.12.0)
       ffi
       ffi-rzmq
     certified (0.1.1)
     daemons (1.1.9)
-    dcell (0.10.0)
-      celluloid (~> 0.10.0)
-      celluloid-zmq (~> 0.10.0)
-      moneta
-      redis
-      redis-namespace
-      reel (~> 0.0.1)
     eventmachine (1.0.0)
+    facter (1.6.14)
     ffi (1.1.5)
     ffi-rzmq (0.9.6)
       ffi
@@ -29,46 +36,42 @@ GEM
       certified
       http_parser.rb
     http_parser.rb (0.5.3)
+    json (1.7.5)
     moneta (0.6.0)
     nio4r (0.4.0)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
-    rack-test (0.6.2)
-      rack (>= 1.0)
     redis (3.0.2)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
-    reel (0.0.2)
+    reel (0.2.0)
       celluloid-io (>= 0.8.0)
       http (>= 0.2.0)
       http_parser.rb (>= 0.5.3)
+      rack (>= 1.4.0)
+      websocket_parser (>= 0.1.0)
     sinatra (1.3.3)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
-    sinatra-contrib (1.3.1)
-      backports (>= 2.0)
-      eventmachine
-      rack-protection
-      rack-test
-      sinatra (~> 1.3.0)
-      tilt (~> 1.3)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     tilt (1.3.3)
+    timers (1.0.1)
+    websocket_parser (0.1.1)
+      http
     wiringpi (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  celluloid
-  dcell
+  dcell!
   haml
+  json
   sinatra
-  sinatra-contrib
   thin
   wiringpi

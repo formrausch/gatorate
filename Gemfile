@@ -1,11 +1,8 @@
 source :rubygems
 
-gem 'haml'
 gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'thin'
+gem "dcell", :git => "git://github.com/celluloid/dcell.git"
 gem 'wiringpi'
-gem 'celluloid'
-gem 'dcell'
-gem 'vegas'
-gem 'cloudkit'
+gem 'haml'
+gem 'thin'
+gem 'json'

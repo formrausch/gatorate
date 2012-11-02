@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'dcell'
+require 'wiringpi'
+
+class Door
+  include Celluloid
+  
+  def initialize
+    @button_pin = 8
+    @io = WiringPi::GPIO.new
+    @io.mode(@button_pin,INPUT)
+  end
+
+  def status
+    @status = read_button_state
+  end
+
+  def open?
+    status
+    @status == :open
+  end
+
+  def closed?
+    !open?
+  end
+  
+  def inc
+    status
+    @status.to_s += "."
+  end
+  
+  private
+  
+  def read_button_state
+    @io.read(@button_pin).to_i == 1 ? :open : :closed
+  end
+  
+end
+
+
+Door.supervise_as :door_actor
+
+DCell.start :addr => "tcp://127.0.0.1:9012", :id => "door.local"
+
+sleep
