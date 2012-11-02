@@ -2,14 +2,9 @@
 
 require 'bundler/setup'
 require 'irb'
+require "dcell"
 require './lib/irb_patch'
-require './lib/stemcell'
 
-name = ARGV[0] || 'console'
-port = ARGV[1] || 9884
-
-stemcell "#{name}.tomair.local", "127.0.0.1", port
-
-#Door = DCell::Node.find("door.tomair.local").find(:door_actor)
+DCell.start :addr => "tcp://127.0.0.1:9010", :id => "console.tomair.local"
 
 IRB.start_session(binding)

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require './lib/stemcell'
+require "dcell"
 
 class Door
   include Celluloid
@@ -25,12 +25,16 @@ class Door
   def closed?
     !open?
   end
+  
+  def inc
+    @status.to_s += "."
+  end
 end
 
 
 Door.supervise_as :door_actor
 
-stemcell "door.tomair.local", "127.0.0.1", 9883
+DCell.start :addr => "tcp://127.0.0.1:9012", :id => "door.tomair.local"
 
 sleep
 

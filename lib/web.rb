@@ -11,7 +11,7 @@ class Web < Sinatra::Base
 
   get '/status' do
     content_type :json
-    { :status => DCell::Node["door.tomair.local"][:door_actor].status }.to_json
+    { :status => DCell::Node.find("door.tomair.local").find(:door_actor).status }.to_json
   end
 end
 
