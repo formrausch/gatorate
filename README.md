@@ -6,7 +6,7 @@ Closed, or not Closed?
 Usage
 -----
 
-    ./bin/gatorote
+    ./bin/gatorate
 
     ./bin/console
   
