@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'irb'
+require "dcell"
+require './lib/common'
+require './lib/irb_patch'
+
+DCell.start :addr => "tcp://#{local_ip}:9010", :id => "console"
+
+door =  DCell::Node.find("door.local").find("door_actor")
+
+trap("INT") { exit_gracefully }
+
+IRB.start_session(binding)
+

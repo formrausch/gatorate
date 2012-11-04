@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+
+require 'dcell'
+require 'socket'
+require 'thin'
+
+
+require './lib/common'
+require './lib/web'
+require './lib/door'
+
+trap("INT") { exit_gracefully }
+
+begin
+  Door.supervise_as :door_actor
+  Web.supervise_as :web_actor   
+  
+  DCell.start :addr => "tcp://#{local_ip}:8888", :id => "door.local"
+
+  puts "** Running DCell on #{local_ip}:8888 with id door.local"
+
+  Thin::Server.start('0.0.0.0', 9292, Web.new)
+rescue Redis::CannotConnectError
+  exit_gracefully("Please start redis-server")
+rescue NoIPAddress
+  exit_gracefully("Could not get IP address") if local_ip.nil?  
+end
+

@@ -6,18 +6,18 @@ Closed, or not Closed?
 Usage
 -----
 
-    ./bin/door
+    ./bin/gatorote
 
-    ./bin/web_server
+    ./bin/console
   
-  
+
+The web interface ist available on http://localhost:9292
+
 Installation
 ------------
 
-The wiringpi project must be installed.
-This works (as far as we know) only on 
-the raspberry pi - and can't be used 
-for testing on desktop machines.
+The wiringpi project must be installed
+on the raspberry pi.
 
 Download at 
 
@@ -32,7 +32,3 @@ Build via
     cd wiringPi
     ./build
 
-Todo
-----
-
-* Desktop env: don't rely on wiringPi
