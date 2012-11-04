@@ -2,3 +2,5 @@
 *.pid
 .bundle/
 .bundle
+._*
+.
