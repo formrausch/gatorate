@@ -4,7 +4,8 @@ module Gatorate
   class Door
     include Celluloid  
   
-    def initialize
+    def initialize(pin=8)
+      @button_pin = pin      
       @status = :open
     end
   
@@ -27,7 +28,7 @@ module Gatorate
   end
 
   begin
-    require './door_on_raspberrypi'    
+    require 'gatorate/door_on_raspberrypi'
   rescue LoadError
     Celluloid.logger.info 'This is running on a desktop machine'
   end  

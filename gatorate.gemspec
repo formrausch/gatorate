@@ -31,9 +31,8 @@ lib/gatorate.rb
   s.add_runtime_dependency('sinatra')            
   s.add_runtime_dependency('ipaddress') 
   s.add_runtime_dependency('awesome_print')      
-  s.add_runtime_dependency('vegas')           
   s.add_runtime_dependency('json')       
-  s.add_runtime_dependency('dcell')       
+  s.add_runtime_dependency('dcell', '0.12.0.pre')       
   s.add_runtime_dependency('thin')                          
 end
 
