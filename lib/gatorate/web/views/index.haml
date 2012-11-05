@@ -1,0 +1,23 @@
+!!!5
+%html
+  %head
+    %link{:rel => "stylesheet", :href => "/stylesheets/application.css"}      
+    %script{:src => '/javascripts/zepto.js'}
+    %script{:src => '/javascripts/application.js'}    
+    
+  %body
+    #status
+    .lock
+      .e.s1.quer
+      .e.s1.hoch1
+      .e.s1.ecke1
+      .e.s1.ecke2
+      .e.s1.hoch2
+      .e.s1.koerper
+      .f.loch
+  
+
+    - if @door.closed?
+      .lock.locked
+    - else
+      .lock.opened

@@ -1,0 +1,138 @@
+body{
+    background-color: black;
+    padding-top: 100px
+  }
+  
+  div.lock{
+    width: 770px;
+    height: 840px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  div.e,div.f{
+  }
+  
+  div.e {
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out; /* Firefox */
+    -webkit-transition: all 0.3s ease-in-out; /* Safari and Chrome */
+    -o-transition: all 0.3s ease-in-out; /* Opera */
+  }
+  
+  .s1 {
+    background-color: #ff034a;
+  }
+  
+  .s2 {
+    background-color: #05ffaa;
+  }
+
+  .s1.koerper {
+    width: 360px;
+    height: 240px;
+    position: absolute;
+    left: 200px;
+    top: 200px;
+  }
+  
+  .s2.koerper {
+    width: 360px;
+    height: 240px;
+    position: absolute;
+    left: 200px;
+    top: 200px;
+  }
+  
+  .f.loch {
+    width: 40px;
+    height: 80px;
+    position: absolute;
+    background-color: black;
+    left: 360px;
+    top: 280px;
+  }
+  
+  .e.s1.quer {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    left: 280px;
+    top: 40px;
+  }
+  
+  .e.s1.hoch1 {
+    width: 40px;
+    height: 160px;
+    position: absolute;
+    left: 240px;
+    top: 80px;
+  }
+  
+  .e.s1.hoch2 {
+    width: 40px;
+    height: 160px;
+    position: absolute;
+    left: 480px;
+    top: 80px;
+  }
+  
+  .e.s1.ecke1 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 280px;
+    top: 80px;
+  }
+  
+  .e.s1.ecke2 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 440px;
+    top: 80px;
+  }
+  
+  .e.s2.quer {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    left: 40px;
+    top: 0px;
+  }
+  
+  .e.s2.hoch1 {
+    width: 40px;
+    height: 160px;
+    position: absolute;
+    left: 240px;
+    top: 40px;
+  }
+  
+  .e.s2.hoch2 {
+    width: 40px;
+    height: 160px;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+  }
+  
+  .e.s2.ecke1 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 200px;
+    top: 40px;
+  }
+  
+  .e.s2.ecke2 {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 40px;
+    top: 40px;
+  }
+  
+  #status {
+    color: #ff034a;
+  }

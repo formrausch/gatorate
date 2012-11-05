@@ -6,7 +6,41 @@ Closed, or not Closed?
 Usage
 -----
 
-    ./bin/door
+    ./bin/gatorate
 
-    ./bin/web_server
+    ./bin/console
   
+
+The web interface ist available on http://localhost:9292
+
+Installation
+------------
+
+Raspberry Pi
+
+    bundle install
+    
+Desktop (Mac/Linux…)    
+
+    bundle install --without raspberrypi
+
+
+Important
+---------
+
+The wiringpi project must be installed
+on the raspberry pi.
+
+Download at 
+
+    https://projects.drogon.net/raspberry-pi/wiringpi/
+
+or 
+
+    git clone git://git.drogon.net/wiringPi
+
+Build via
+
+    cd wiringPi
+    ./build
+
