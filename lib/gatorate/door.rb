@@ -8,7 +8,7 @@ module Gatorate
       @button_pin = pin      
       @status = :open
     end
-  
+      
     def open?
       puts status
       status == :open
@@ -34,4 +34,3 @@ module Gatorate
   end  
 end
 
-Gatorate::Door.supervise_as :door_actor

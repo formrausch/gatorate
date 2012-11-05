@@ -3,10 +3,10 @@ require 'wiringpi'
 module Gatorate
   class Door 
     
-    def initialize(pin=8)
+    def initialize(pin=0)
       @button_pin = pin
-      @io = WiringPi::GPIO.new
-      @io.mode(pin, INPUT)
+      @io = WiringPi::GPIO.new(WPI_MODE_SYS)
+      #@io.mode(pin, INPUT)
     end
      
     def status
