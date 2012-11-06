@@ -11,6 +11,7 @@ spec = Gem::Specification.new do |s|
   s.summary = 'Is the door open'
 
   s.files = %w(
+bin/gatorate-prepare
 bin/gatorate
 lib/gatorate/version.rb
 lib/gatorate.rb
