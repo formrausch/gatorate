@@ -12,6 +12,7 @@ spec = Gem::Specification.new do |s|
 
   s.files = %w(
 bin/gatorate-prepare
+bin/gatorate-install
 bin/gatorate
 lib/gatorate/version.rb
 lib/gatorate.rb
@@ -21,7 +22,7 @@ lib/gatorate.rb
   s.extra_rdoc_files = ['gatorate.rdoc']
   s.rdoc_options << '--title' << 'gatorate' << '--main' << 'README.rdoc' << '-ri'
   s.bindir = 'bin'
-  s.executables << 'gatorate'
+  s.executables << 'gatorate' << 'gatorate-prepare' << 'gatorate-install'
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
@@ -29,11 +30,11 @@ lib/gatorate.rb
   s.add_runtime_dependency('gli','2.4.1')
   s.add_runtime_dependency('haml')          
   s.add_runtime_dependency('smart_colored')              
-  s.add_runtime_dependency('sinatra')            
+  s.add_runtime_dependency('sinatra')   
   s.add_runtime_dependency('ipaddress') 
   s.add_runtime_dependency('awesome_print')      
   s.add_runtime_dependency('json')       
   s.add_runtime_dependency('dcell', '0.12.0.pre')       
-  s.add_runtime_dependency('thin')                          
+  s.add_runtime_dependency('thin')   
 end
 
