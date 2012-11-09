@@ -1,12 +1,26 @@
 !!!5
 %html
   %head
+
+    %meta{ :name => "viewport", :content => "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" }
+    %meta{ :name => "apple-mobile-web-app-capable", :content => "yes" }
+    %meta{ :name => "apple-mobile-web-app-status-bar-style", :content => "black" }
+        
     %link{:rel => "stylesheet", :href => "/stylesheets/application.css"}      
     %script{:src => '/javascripts/zepto.js'}
     %script{:src => '/javascripts/application.js'}    
     
-  %body
-    #status
+    %link{:rel => "apple-touch-icon", :sizes => "144x144", :href => "/images/apple-touch-icon-144x144.png"}
+    
+    %link{:rel => "apple-touch-startup-image", :href => "/images/splash-screen-640x960.png"}
+    
+    
+    %title
+      Gatorate
+
+    
+  %body#orient{:style => "background-color: black;"}
+    
     .lock
       .e.s0.quer
       .e.s0.hoch1
@@ -14,8 +28,8 @@
       .e.s0.ecke2
       .e.s0.hoch2
       .e.s0.koerper
-      .f.loch
-  
+      .e.s0.loch
+
 
     - if @door.closed?
       .lock.locked

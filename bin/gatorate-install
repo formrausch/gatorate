@@ -1,0 +1,20 @@
+#!/bin/bash
+uid=$(/usr/bin/id -u) && [ "$uid" = "0" ] || { echo "You need to be root to run this script! Exiting.."; exit 1; }
+
+apt-get --yes install sysv-rc-conf
+
+INITPATH="/etc/init.d/"
+
+if [ -b "/etc/init.d/gatorate" ]
+then
+  `sudo rm /etc/init.d/gatorate`
+fi
+
+DAEMON_PATH="/home/pi/gatorate"
+
+sudo cp ../script/init.script /etc/init.d/gatorate
+sudo update-rc.d gatorate defaults
+
+echo "To start gatorate type 'sudo /etc/init.d/gatorate start'"
+
+exit
