@@ -1,5 +1,6 @@
 .DS_Store
 *.pid
+lib/gatorate/web/config/*.yml
 .bundle/
 .bundle
 ._*

@@ -1,4 +1,8 @@
 #!/bin/sh
+if [ `whoami` != root ]; then
+    echo Please run this script as root or using sudo
+    exit
+fi
 
 echo "0" > /sys/class/gpio/export
 echo "17" > /sys/class/gpio/export
