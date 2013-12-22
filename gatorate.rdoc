@@ -1,6 +1,0 @@
-= gatorate
-
-Generate this with
-    gatorate rdoc
-    
-After you have described your command line interface
