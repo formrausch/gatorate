@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require 'thin'
+require "dcell"
+require './lib/web.rb'
+
+DCell.start :addr => "tcp://127.0.0.1:9014", :id => "web.tomair.local"
+
+if $0 == __FILE__
+  require 'rack'
+  require 'rack/showexceptions'
+  Rack::Handler::Thin.run Rack::ShowExceptions.new(Rack::Lint.new(Web.new)), :Port => 9295
+end

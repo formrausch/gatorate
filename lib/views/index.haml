@@ -1,0 +1,41 @@
+!!!5
+%html
+  %head
+    %script{:src => 'http://zeptojs.com/zepto.js'}
+    :css
+      table, tr,td {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    :javascript
+      var check_status = function check_status() {
+        $.getJSON('/status', function(data){
+          $("#status").text(data.status)
+          setTimeout(check_status, 1000)
+        })
+      }
+
+      $(function() {
+        check_status()
+      })
+
+%table
+  - DCell::Node.all.each do |node|
+    %tr
+      %td= node[:info].hostname
+      %td= node.id
+      %td= node.addr
+      %td= node[:info].load_average
+
+
+%hr
+
+
+%hr
+= DCell::Node.all.count
+Nodes
+%hr
+
+#status
+
+

@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require "dcell"
+
+class Door
+  include Celluloid
+
+  def initialize
+    @status = :closed
+  end
+
+  def status
+    @status
+  end
+
+  def status=(status)
+    @status = status
+  end
+
+  def open?
+    @status == :open
+  end
+
+  def closed?
+    !open?
+  end
+  
+  def inc
+    @status.to_s += "."
+  end
+end
+
+
+Door.supervise_as :door_actor
+
+DCell.start :addr => "tcp://127.0.0.1:9012", :id => "door.tomair.local"
+
+sleep
+

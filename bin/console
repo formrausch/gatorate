@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'irb'
+require "dcell"
+require './lib/irb_patch'
+
+DCell.start :addr => "tcp://127.0.0.1:9010", :id => "console.tomair.local"
+
+IRB.start_session(binding)
