@@ -29,6 +29,7 @@ lib/gatorate.rb
   s.add_development_dependency('mocha')
   s.add_runtime_dependency('gli','2.8.1')
   s.add_runtime_dependency('haml')
+  s.add_runtime_dependency('celluloid-zmq')
   s.add_runtime_dependency('smart_colored')
   s.add_runtime_dependency('sinatra')
   s.add_runtime_dependency('ipaddress')

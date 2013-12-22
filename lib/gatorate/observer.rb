@@ -1,12 +1,15 @@
 require 'dcell'
-require 'gatorate/support/ip'
+require_relative 'support/ip'
 
 module Gatorate
   class Observer
     def initialize(config)
       begin
+
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
-        Celluloid::Actor[:led_actor].on
+        Gatorate::Door.run
+        Gatorate::LED.run
+
         Celluloid.logger.info "** Running DCell on #{config["ip"]}:#{config["port"]} with id #{config["node"]}"
         sleep
 
@@ -15,40 +18,42 @@ module Gatorate
       rescue Redis::CannotConnectError
        exit_gracefully("Please start redis-server")
       rescue NoIPAddress
-        exit_gracefully("Could not get IP address") if local_ip.nil?  
+        exit_gracefully("Could not get IP address") if local_ip.nil?
       end
     end
-    
+
     def exit_gracefully(why="")
       Celluloid.terminate
       Celluloid.logger.warn why
-    end  
+    end
   end
 end
 
-Gatorate::Door.supervise_as :door_actor
 
 module Gatorate
   class LED
-    include Celluloid 
-  
+    include Celluloid
+
+    def self.run
+      Gatorate::LED.supervise_as :led_actor
+      Celluloid::Actor[:led_actor].on
+    end
+
     def initialize(pin=17)
       @led_pin = pin
       @io = WiringPi::GPIO.new(WPI_MODE_SYS)
     end
-  
+
     def on
       @io.write(@led_pin, HIGH)
       after(0.1) {off}
-        
     end
-  
+
     def off
       @io.write(@led_pin, LOW)
-      after(2) {on}        
+      after(2) {on}
     end
-  
+
   end
 end
 
-Gatorate::LED.supervise_as :led_actor
