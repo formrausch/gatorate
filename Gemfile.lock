@@ -1,12 +1,13 @@
 PATH
   remote: .
   specs:
-    gatorate (0.0.1)
+    gatorate (0.0.2)
       awesome_print
       celluloid-zmq
       dcell (= 0.15.0)
       gli (= 2.8.1)
       haml
+      http
       ipaddress
       json
       sinatra

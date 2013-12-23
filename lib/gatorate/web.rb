@@ -2,6 +2,7 @@ require "dcell"
 require 'haml'
 require 'sinatra/base'
 require 'json'
+require 'timeout'
 
 class Web < Sinatra::Base
   set :public_folder, 'lib/gatorate/web/public'

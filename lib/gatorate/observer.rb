@@ -8,7 +8,11 @@ module Gatorate
 
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
         Gatorate::Door.run
-        Gatorate::LED.run
+        Gatorate::Heartbeat.run
+
+        # Doris
+        Celluloid::Actor[:led_actor].add_webhook('http://formrausch-doris.herokuapp.com/heartbeat')
+        Celluloid::Actor[:door_actor].add_webhook('http://formrausch-doris.herokuapp.com/events')
 
         Celluloid.logger.info "** Running DCell on #{config["ip"]}:#{config["port"]} with id #{config["node"]}"
         sleep
@@ -30,30 +34,4 @@ module Gatorate
 end
 
 
-module Gatorate
-  class LED
-    include Celluloid
-
-    def self.run
-      Gatorate::LED.supervise_as :led_actor
-      Celluloid::Actor[:led_actor].on
-    end
-
-    def initialize(pin=17)
-      @led_pin = pin
-      @io = WiringPi::GPIO.new(WPI_MODE_SYS)
-    end
-
-    def on
-      @io.write(@led_pin, HIGH)
-      after(0.1) {off}
-    end
-
-    def off
-      @io.write(@led_pin, LOW)
-      after(2) {on}
-    end
-
-  end
-end
 

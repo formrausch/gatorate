@@ -37,6 +37,7 @@ lib/gatorate.rb
   s.add_runtime_dependency('json')
   s.add_runtime_dependency('dcell', '0.15.0')
   s.add_runtime_dependency('thin')
+  s.add_runtime_dependency('http')
   s.add_runtime_dependency('wiringpi')
 end
 
