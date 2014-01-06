@@ -1,16 +1,19 @@
 require 'dcell'
 require 'wiringpi'
+require 'rest_client'
 
 module Gatorate
   class Heartbeat
     include Celluloid
+    include Celluloid::Logger
 
-    def self.run(name=:led_actor)
-      self.supervise_as name
+    def self.spawn(name: :heartbeat_actor, pin:17, frequency:10)
+      self.supervise_as name, pin, frequency
       Actor[name].on
+      Actor[name]
     end
 
-    def initialize(pin=17, frequency=10)
+    def initialize(pin, frequency)
       @led_pin   = pin
       @frequency = frequency
 
@@ -31,9 +34,18 @@ module Gatorate
 
     def notify_webhooks
       @hooks.each do |hook|
-        options = {type: :heartbeat, timestamp: Time.now}
-        HTTP.post hook, form: {payload: options.to_json}
-        Celluloid.logger.info "|> #{hook} |> #{options}"
+        begin
+          # from doris client
+          timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
+          RestClient.post hook, {'type' => 'heartbeat', 'timestamp' => timestamp}.to_json, :content_type => :json, :accept => :json
+
+          #options = {type: :heartbeat, timestamp: Time.now}
+          #HTTP.post hook, form: {payload: options.to_json}
+
+          info "|> Connect #{hook} |> #{timestamp}"
+        rescue Errno::ECONNREFUSED => e
+          warn "!! Could not connect to #{hook}"
+        end
       end
     end
 

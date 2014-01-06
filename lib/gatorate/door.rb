@@ -1,15 +1,18 @@
 require 'celluloid'
 require_relative 'support/digital_pin'
+require 'rest_client'
 
 module Gatorate
   class Door
     include Celluloid
+    include Celluloid::Logger
 
-    def self.run
-      Gatorate::Door.supervise_as :door_actor
+    def self.spawn(name: :door_actor, pin:8, frequency:5)
+      Gatorate::Door.supervise_as name, pin, frequency
+      Actor[name]
     end
 
-    def initialize(pin=8, frequency=5)
+    def initialize(pin, frequency)
       @button_pin = pin
       @frequency  = frequency
 
@@ -44,9 +47,23 @@ module Gatorate
 
     def notify_webhooks(event)
       @hooks.each do |hook|
-        options = {type: :event, state_changed_to: event, timestamp: Time.now}
-        HTTP.post hook, form: {payload: options.to_json}
-        Celluloid.logger.info "|> #{hook} |> #{options}"
+        begin
+          #options = {type: :event, state_changed_to: event, timestamp: Time.now}
+          #HTTP.post hook, form: {payload: options.to_json}
+          #RestClient.post hook, {'type' => 'heartbeat', 'timestamp' => timestamp}.to_json, :content_type => :json, :accept => :json
+          #
+
+          # from doris client
+          timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
+          event_hash = {:type => "event", :state_changed_to => event, :timestamp => timestamp}
+          json = JSON.generate(event_hash)
+          RestClient.post hook, json, :content_type => :json, :accept => :json
+
+          info "|> Door Webhook #{hook} |> #{timestamp}"
+
+        rescue Errno::ECONNREFUSED => e
+          warn "|> Door - Could not connect to #{hook}"
+        end
       end
     end
 

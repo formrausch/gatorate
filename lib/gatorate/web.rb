@@ -9,19 +9,17 @@ class Web < Sinatra::Base
   set :views, 'lib/gatorate/web/views'
   set :run, false
 
-  get '/?' do
+  before do
     @door_node  = DCell::Node.find("door")
     @door       = @door_node.find(:door_actor)
+  end
 
+  get '/?' do
     haml :index
   end
 
   get '/status' do
     content_type :json
-
-    @door_node = DCell::Node.find("door")
-    @door      = @door_node.find(:door_actor)
-
     { :status => @door.status }.to_json
   end
 end

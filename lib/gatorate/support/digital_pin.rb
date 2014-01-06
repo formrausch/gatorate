@@ -1,6 +1,8 @@
 require 'celluloid'
 require 'celluloid/io'
 
+# https://github.com/hybridgroup/artoo/blob/master/lib/artoo/adaptors/io/digital_pin.rb
+
 module Artoo
   module Adaptors
     module IO
@@ -101,7 +103,7 @@ module Artoo
         end
 
         def digital_read
-          Random.rand(10) <= 2 ? 'high' : 'low'
+          Random.rand(100) <= 10 ? 'high' : 'low'
         end
 
         def close

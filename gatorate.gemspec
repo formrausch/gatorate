@@ -27,6 +27,7 @@ lib/gatorate.rb
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
   s.add_development_dependency('mocha')
+
   s.add_runtime_dependency('gli','2.8.1')
   s.add_runtime_dependency('haml')
   s.add_runtime_dependency('celluloid-zmq')
@@ -38,6 +39,8 @@ lib/gatorate.rb
   s.add_runtime_dependency('dcell', '0.15.0')
   s.add_runtime_dependency('thin')
   s.add_runtime_dependency('http')
+  s.add_runtime_dependency('rest-client')
+
   s.add_runtime_dependency('wiringpi')
 end
 
