@@ -7,7 +7,7 @@ module Gatorate
     include Celluloid
     include Celluloid::Logger
 
-    def self.spawn(name: :door_actor, pin:8, frequency:5)
+    def self.spawn(name=:door_actor, pin=8, frequency=5)
       Gatorate::Door.supervise_as name, pin, frequency
       Actor[name]
     end
