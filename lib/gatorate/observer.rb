@@ -39,7 +39,7 @@ module Gatorate
     end
 
     def exit_gracefully(why="")
-      terminate
+      Celluloid.terminate
       warn why
     end
   end
