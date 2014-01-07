@@ -10,8 +10,13 @@ module Gatorate
       begin
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
 
-        door      = Gatorate::Door.spawn #name: :door_actor, pin: 18, frequency: 5
-        heartbeat = Gatorate::Heartbeat.spawn #name: :hearbeat_actor, pin:17, frequency:10
+        door = Gatorate::Door.spawn :door_actor, 18, 5 do |gate|
+          gate.check_status
+        end
+
+        heartbeat = Gatorate::Heartbeat.spawn :hearbeat_actor, 17, 10 do |beat|
+          beat.on
+        end
 
         # local test
         heartbeat.add_webhook('http://vcap.me:5000/heartbeat')
