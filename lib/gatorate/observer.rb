@@ -1,4 +1,7 @@
 require 'dcell'
+require 'yell'
+require 'yell-adapters-syslog'
+
 require_relative 'support/ip'
 
 module Gatorate
@@ -7,6 +10,15 @@ module Gatorate
 
     def initialize(config)
       begin
+        logger = Yell.new do |l|
+          l.adapter STDOUT, :level => [:debug, :info, :warn]
+          l.adapter STDERR, :level => [:error, :fatal]
+
+          l.adapter :syslog
+        end
+
+        Celluloid.logger = logger
+
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
 
         door = Gatorate::Door.spawn :door, 18, 0.1 do |gate|

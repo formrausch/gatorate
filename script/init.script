@@ -40,7 +40,7 @@ start)
             echo $PID2 > $PIDFILEWEB
             printf "%s\n" "Web: Ok"
         fi
-    
+
 
 ;;
 
@@ -55,7 +55,7 @@ stop)
         else
             printf "%s\n" "pidfile not found"
         fi
-        
+
             PID2=`cat $PIDFILEWEB`
             cd $DAEMON_PATH
         if [ -f $PIDFILEWEB ]; then

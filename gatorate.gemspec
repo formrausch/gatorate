@@ -39,6 +39,8 @@ lib/gatorate.rb
   s.add_runtime_dependency('dcell', '0.15.0')
   s.add_runtime_dependency('thin')
   s.add_runtime_dependency('http')
+  s.add_runtime_dependency('yell')
+  s.add_runtime_dependency('yell-adapters-syslog')
   s.add_runtime_dependency('rest-client')
 
   s.add_runtime_dependency('wiringpi')
