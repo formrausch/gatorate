@@ -6,12 +6,16 @@ fi
 
 echo "0" > /sys/class/gpio/export
 echo "17" > /sys/class/gpio/export
+echo "16" > /sys/class/gpio/export
 
 echo "in" > /sys/class/gpio/gpio0/direction
 echo "out" > /sys/class/gpio/gpio17/direction
+echo "out" > /sys/class/gpio/gpio16/direction
 
 chmod 666 /sys/class/gpio/gpio0/value
 chmod 666 /sys/class/gpio/gpio17/value
+chmod 666 /sys/class/gpio/gpio16/value
 
 chmod 666 /sys/class/gpio/gpio0/direction
 chmod 666 /sys/class/gpio/gpio17/direction
+chmod 666 /sys/class/gpio/gpio16/direction

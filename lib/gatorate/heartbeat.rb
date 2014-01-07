@@ -19,7 +19,7 @@ module Gatorate
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
 
       RestClient.post hook_url,
-                      {type: heartbeat, timestamp:timestamp}.to_json,
+                      {type: :heartbeat, timestamp:timestamp}.to_json,
                       :content_type => :json,
                       :accept => :json
     end
