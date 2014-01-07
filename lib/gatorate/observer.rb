@@ -21,7 +21,7 @@ module Gatorate
 
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
 
-        door = Gatorate::Door.spawn :door, 18, 0.1 do |gate|
+        door = Gatorate::Door.spawn :door, 0, 0.1 do |gate|
           gate.check_status
         end
 
@@ -29,9 +29,11 @@ module Gatorate
           beat.on
         end
 
-        # local test
-        heartbeat.add_webhook('http://vcap.me:5000/heartbeat')
-        door.add_webhook('http://vcap.me:5000/events')
+        # Lighter
+        door.add_webhook('http://10.0.1.41/events')
+
+        # tombook
+        door.add_webhook('http://10.0.1.56/events')
 
         # Doris
         heartbeat.add_webhook('http://formrausch-doris.herokuapp.com/heartbeat')

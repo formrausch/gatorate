@@ -23,7 +23,7 @@ class PinActor
   end
 
   def read_pin
-    io.read(@pin)
+    io.read(@pin).to_i
   end
 
   def write_pin(value)
