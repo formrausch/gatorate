@@ -34,6 +34,7 @@ module Gatorate
         door.add_webhook('http://10.0.1.41:9292/events')
 
         # tombook
+        heartbeat.add_webhook('http://10.0.1.56:9292/heartbeat')
         door.add_webhook('http://10.0.1.56:9292/events')
 
         # Doris
