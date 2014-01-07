@@ -8,8 +8,7 @@ module Webhook
     @hooks ||= []
   end
 
-  def notify_webhooks(payload=[])
-    payload = Array(payload)
+  def notify_webhooks(payload="")
 
     hooks.each do |hook|
       begin

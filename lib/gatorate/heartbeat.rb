@@ -16,7 +16,6 @@ module Gatorate
 
     def send_webhook(hook_url, payload)
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
-
       http_post hook_url, {type: :heartbeat, timestamp:timestamp}
     end
   end
