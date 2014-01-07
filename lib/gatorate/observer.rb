@@ -29,7 +29,8 @@ module Gatorate
 
         sleep
 
-      rescue Celluloid::ZMQ::Socket::IOError
+      rescue Celluloid::ZMQ::Socket::IOError => e
+        warn e.backtrace
         exit_gracefully("Gatorate is already running")
       rescue ::Redis::CannotConnectError
        exit_gracefully("Please start redis-server")
