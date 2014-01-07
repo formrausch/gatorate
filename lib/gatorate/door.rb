@@ -17,7 +17,7 @@ module Gatorate
     def send_webhook(hook_url, payload)
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
 
-      event = payload.first
+      event = payload
       event_hash = {type: event, state_changed_to: event, timestamp: timestamp}
 
       http_post hook_url, event_hash
