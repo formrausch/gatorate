@@ -27,6 +27,6 @@ module Webhook
   end
 
   def http_post(url, payload)
-    HTTP.post url, socket_class: Celluloid::IO::TCPSocket, json: JSON.dump(payload)
+    HTTP.post url, json: JSON.dump(payload)
   end
 end
