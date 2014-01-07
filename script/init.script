@@ -4,6 +4,8 @@
 # description: gatorate daemon
 # processname: gatorate
 
+uid=$(/usr/bin/id -u) && [ "$uid" = "0" ] || { echo "You need to be root to run this script! Exiting.."; exit 1; }
+
 DAEMON_PATH="/home/pi/gatorate"
 
 DAEMON="bin/gatorate"
