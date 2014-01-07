@@ -3,10 +3,11 @@ module Webhook
     @hooks ||= []
   end
 
-  def notify_webhooks
+  def notify_webhooks(payload=[])
+    payload = Array(payload)
     hooks.each do |hook|
       begin
-        send_webhook(hook)
+        send_webhook(hook, payload)
         info "|> Connect #{hook} |> #{self.class.name}"
       rescue Errno::ECONNREFUSED => e
         warn "!! Could not connect to #{hook} |> #{self.class.name}"

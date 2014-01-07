@@ -27,6 +27,6 @@ class PinActor
   end
 
   def write_pin(value)
-    io.write(@pin, LOW)
+    io.write(@pin, value)
   end
 end

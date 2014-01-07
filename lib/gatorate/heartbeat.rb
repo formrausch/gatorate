@@ -15,7 +15,7 @@ module Gatorate
       after(@frequency) { on }
     end
 
-    def send_webhook(hook_url)
+    def send_webhook(hook_url, payload)
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
 
       RestClient.post hook_url,
