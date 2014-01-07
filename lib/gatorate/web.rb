@@ -11,7 +11,7 @@ class Web < Sinatra::Base
 
   before do
     @door_node  = DCell::Node.find("door")
-    @door       = @door_node.find(:door_actor)
+    @door       = @door_node.find(:door)
   end
 
   get '/?' do

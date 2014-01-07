@@ -1,7 +1,6 @@
 require 'dcell'
 require_relative 'support/ip'
 
-
 module Gatorate
   class Observer #< Celluloid::SupervisionGroup
     include Celluloid::Logger
@@ -10,11 +9,11 @@ module Gatorate
       begin
         DCell.start :addr => "tcp://#{config["ip"]}:#{config["port"]}", :id => config["node"]
 
-        door = Gatorate::Door.spawn :door_actor, 18, 5 do |gate|
+        door = Gatorate::Door.spawn :door, 18, 0.1 do |gate|
           gate.check_status
         end
 
-        heartbeat = Gatorate::Heartbeat.spawn :hearbeat_actor, 17, 10 do |beat|
+        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, 17, 10 do |beat|
           beat.on
         end
 
