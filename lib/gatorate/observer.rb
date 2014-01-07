@@ -13,7 +13,7 @@ module Gatorate
           gate.check_status
         end
 
-        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, 17, 10 do |beat|
+        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, 22, 10 do |beat|
           beat.on
         end
 
