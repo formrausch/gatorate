@@ -1,4 +1,3 @@
-require 'rest_client'
 
 module Gatorate
   class Heartbeat < PinActor
@@ -18,10 +17,7 @@ module Gatorate
     def send_webhook(hook_url, payload)
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
 
-      RestClient.post hook_url,
-                      {type: :heartbeat, timestamp:timestamp}.to_json,
-                      :content_type => :json,
-                      :accept => :json
+      http_post hook_url, {type: :heartbeat, timestamp:timestamp}
     end
   end
 end

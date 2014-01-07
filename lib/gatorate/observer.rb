@@ -8,6 +8,7 @@ module Gatorate
   class Observer #< Celluloid::SupervisionGroup
     include Celluloid::Logger
 
+
     def initialize(config)
       begin
         logger = Yell.new do |l|
@@ -49,6 +50,8 @@ module Gatorate
        exit_gracefully("Please start redis-server")
       rescue NoIPAddress
         exit_gracefully("Could not get IP address") if local_ip.nil?
+      rescue
+        exit_gracefully("I don't know why we can't start")
       end
     end
 
