@@ -25,7 +25,9 @@ module Gatorate
       event_hash = {type: event, state_changed_to: event, timestamp: timestamp}
       json = JSON.generate(event_hash)
 
-      #RestClient.post hook_url, json, :content_type => :json, :accept => :json
+      info hook_url
+
+      RestClient.post hook_url, json, :content_type => :json, :accept => :json
     end
 
     def check_status(last_status=nil)

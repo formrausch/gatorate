@@ -13,6 +13,8 @@ module Webhook
         warn "!! Could not reach #{hook} |> #{self.class.name}"
       rescue Errno::ECONNREFUSED => e
         warn "!! Could not connect to #{hook} |> #{self.class.name}"
+      rescue
+        fatal "!!!!!"
       end
     end
   end
