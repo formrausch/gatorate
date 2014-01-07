@@ -30,10 +30,10 @@ module Gatorate
         end
 
         # Lighter
-        door.add_webhook('http://10.0.1.41/events')
+        door.add_webhook('http://10.0.1.41:9292/events')
 
         # tombook
-        door.add_webhook('http://10.0.1.56/events')
+        door.add_webhook('http://10.0.1.56:9292/events')
 
         # Doris
         heartbeat.add_webhook('http://formrausch-doris.herokuapp.com/heartbeat')
