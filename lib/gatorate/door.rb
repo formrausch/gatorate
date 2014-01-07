@@ -33,6 +33,7 @@ module Gatorate
       new_status = status
 
       if !last_status.nil? && new_status != last_status
+
         notify_webhooks(new_status)
       end
 
