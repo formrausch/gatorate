@@ -5,22 +5,32 @@ class PinActor
   include Celluloid
   include Celluloid::IO
   include Celluloid::Logger
+  include Webhook::Pusher
 
-  def self.spawn(name=self.actor_name, pin=17, frequency=10)
-    self.supervise_as name, pin, frequency
+  # we'll use params instead of ruby 2.0
+  # named arguments because ruby 2 is
+  # not available on raspberry pi without
+  # manual (3h) install
+
+  def self.spawn(name=self.actor_name, params={})
+    self.supervise_as name, params[:pin], params[:frequency]
+
     yield Actor[name] if block_given?
+
+    Actor[name].start
     Actor[name]
   end
 
   def initialize(pin, frequency)
-    @pin   = pin
+    @pin = pin
     @frequency = frequency
+  end
 
-    @io = WiringPi::GPIO.new(WPI_MODE_SYS)
+  def start
   end
 
   def io
-    @io
+    @io ||= WiringPi::GPIO.new(WPI_MODE_SYS)
   end
 
   def read_pin

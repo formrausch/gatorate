@@ -1,6 +1,9 @@
 module Gatorate
   class Door < PinActor
-    include Webhook
+
+    def start
+      check_status
+    end
 
     def open?
       status == :open
@@ -12,15 +15,6 @@ module Gatorate
 
     def status
       read_pin == 1 ? :open : :closed
-    end
-
-    def on_notify(hook_url, payload)
-      timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
-
-      event = payload
-      event_hash = {type: event, state_changed_to: event, timestamp: timestamp}
-
-      http_post hook_url, event_hash
     end
 
     def check_status(last_status=nil)
@@ -35,6 +29,16 @@ module Gatorate
         check_status(new_status)
       }
     end
+
+    def on_webhook_notify(hook_url, payload)
+      timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
+
+      event = payload
+      event_hash = {type: event, state_changed_to: event, timestamp: timestamp}
+
+      http_post hook_url, event_hash
+    end
+
   end
 end
 

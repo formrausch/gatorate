@@ -1,3 +1,5 @@
+require 'colorize'
+
 require_relative 'gatorate/version'
 require_relative 'gatorate/support/ip'
 require_relative 'gatorate/support/irb'

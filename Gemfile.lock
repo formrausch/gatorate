@@ -1,3 +1,29 @@
+GIT
+  remote: git@github.com:celluloid/celluloid-io.git
+  revision: b12dff20db97cc96b5666416d6f0235f152c8d78
+  specs:
+    celluloid-io (0.16.0.pre)
+      celluloid (>= 0.15.0)
+      nio4r (>= 0.5.0)
+
+GIT
+  remote: git@github.com:celluloid/celluloid.git
+  revision: 5a533b81dc0b8b1c28cec6517f728ca1df1ddab8
+  specs:
+    celluloid (0.16.0.pre)
+      timers (~> 2.0.0)
+
+GIT
+  remote: git@github.com:celluloid/dcell.git
+  revision: 21f384eab201bd8d9b32a431a018626187b10d41
+  specs:
+    dcell (0.15.0)
+      celluloid (>= 0.15.0)
+      celluloid-redis
+      celluloid-zmq (>= 0.15.0)
+      redis-namespace
+      reel
+
 PATH
   remote: .
   specs:
@@ -27,11 +53,6 @@ GEM
       rspec-expectations (>= 2.7.0)
     awesome_print (1.2.0)
     builder (3.2.2)
-    celluloid (0.15.2)
-      timers (~> 1.1.0)
-    celluloid-io (0.15.0)
-      celluloid (>= 0.15.0)
-      nio4r (>= 0.5.0)
     celluloid-redis (0.0.2)
       celluloid-io (>= 0.13.0.pre)
       redis
@@ -48,12 +69,6 @@ GEM
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.0.2)
     daemons (1.1.9)
-    dcell (0.15.0)
-      celluloid (>= 0.15.0)
-      celluloid-redis
-      celluloid-zmq (>= 0.15.0)
-      redis-namespace
-      reel
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     ffi (1.9.3)
@@ -64,6 +79,7 @@ GEM
     gli (2.8.1)
     haml (4.0.4)
       tilt
+    hitimes (1.2.1)
     http (0.5.0)
       http_parser.rb
     http_parser.rb (0.6.0)
@@ -105,7 +121,8 @@ GEM
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     tilt (1.4.1)
-    timers (1.1.0)
+    timers (2.0.0)
+      hitimes
     websocket_parser (0.1.4)
       http
     wiringpi (1.1.0)
@@ -118,6 +135,9 @@ PLATFORMS
 
 DEPENDENCIES
   aruba
+  celluloid!
+  celluloid-io!
+  dcell!
   gatorate!
   mocha
   rake
