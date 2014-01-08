@@ -5,7 +5,8 @@ PATH
       awesome_print
       celluloid-zmq
       colorize
-      dcell (= 0.15.0)
+      dcell
+      ffi-rzmq (= 1.0.3)
       gli (= 2.8.1)
       haml
       http
@@ -60,10 +61,8 @@ GEM
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     ffi (1.9.3)
-    ffi-rzmq (2.0.0)
-      ffi-rzmq-core (>= 1.0.1)
-    ffi-rzmq-core (1.0.1)
-      ffi (~> 1.9)
+    ffi-rzmq (1.0.3)
+      ffi
     gherkin (2.12.2)
       multi_json (~> 1.3)
     gli (2.8.1)
