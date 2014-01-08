@@ -40,6 +40,7 @@ lib/gatorate.rb
   s.add_runtime_dependency('thin')
   s.add_runtime_dependency('http')
   s.add_runtime_dependency('colorize')
+  s.add_runtime_dependency('wiringpi')
   s.add_runtime_dependency('yell')
   s.add_runtime_dependency('yell-adapters-syslog')
   s.add_runtime_dependency('rest-client')

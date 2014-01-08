@@ -16,6 +16,7 @@ PATH
       smart_colored
       thin
       wiringpi
+      wiringpi
       yell
       yell-adapters-syslog
 
