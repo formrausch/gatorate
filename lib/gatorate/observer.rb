@@ -1,4 +1,5 @@
 require 'celluloid/autostart'
+require 'colorize'
 require 'dcell'
 require 'yell'
 require 'yell-adapters-syslog'
@@ -26,7 +27,7 @@ module Gatorate
         heartbeat.add_webhook('http://formrausch-doris.herokuapp.com/heartbeat')
         door.add_webhook('http://formrausch-doris.herokuapp.com/events')
 
-        info "** Running DCell on #{config["ip"]}:#{config["port"]} with id #{config["node"]}"
+        info "** Running DCell on #{config["ip"]}:#{config["port"]} with id #{config["node"]}".magenta
 
         sleep
 
