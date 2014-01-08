@@ -1,5 +1,5 @@
 require 'celluloid/io'
-require 'net/http'
+require 'http'
 
 module Webhook
   include Celluloid::IO
@@ -9,7 +9,6 @@ module Webhook
   end
 
   def notify_webhooks(payload="")
-
     hooks.each do |hook|
       begin
         send_webhook(hook, payload)
@@ -27,6 +26,6 @@ module Webhook
   end
 
   def http_post(url, payload)
-    HTTP.post url, json: JSON.dump(payload)
+    HTTP.post url, socket_class: Celluloid::IO::TCPSocket, json: JSON.dump(payload)
   end
 end

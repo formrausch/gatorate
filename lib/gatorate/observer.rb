@@ -4,10 +4,11 @@ require 'yell-adapters-syslog'
 
 require_relative 'support/ip'
 
+
+
 module Gatorate
   class Observer #< Celluloid::SupervisionGroup
     include Celluloid::Logger
-
 
     def initialize(config)
       begin
@@ -59,6 +60,10 @@ module Gatorate
     def exit_gracefully(why="")
       Celluloid.terminate
       warn why
+    end
+
+    def hooks_for(actor)
+
     end
   end
 end
