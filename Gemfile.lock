@@ -20,7 +20,7 @@ PATH
       yell-adapters-syslog
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     aruba (0.5.3)
       childprocess (>= 0.3.6)
@@ -59,8 +59,10 @@ GEM
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     ffi (1.9.3)
-    ffi-rzmq (1.0.3)
-      ffi
+    ffi-rzmq (2.0.0)
+      ffi-rzmq-core (>= 1.0.1)
+    ffi-rzmq-core (1.0.1)
+      ffi (~> 1.9)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     gli (2.8.1)
@@ -76,13 +78,13 @@ GEM
     mocha (0.14.0)
       metaclass (~> 0.0.1)
     multi_json (1.8.2)
-    multi_test (0.0.2)
+    multi_test (0.0.3)
     nio4r (0.5.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
     rake (10.1.1)
-    rdoc (4.0.1)
+    rdoc (4.1.0)
       json (~> 1.4)
     redis (3.0.6)
     redis-namespace (1.4.1)
@@ -111,7 +113,7 @@ GEM
     websocket_parser (0.1.4)
       http
     wiringpi (1.1.0)
-    yell (2.0.1)
+    yell (2.0.2)
     yell-adapters-syslog (2.0.1)
       yell (~> 2.0)
 
