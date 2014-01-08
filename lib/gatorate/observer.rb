@@ -18,7 +18,7 @@ module Gatorate
                     id:   config["node"]
 
         door      = Gatorate::Door.spawn :door, pin: 0, frequency: 0.1
-        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, pin: 17, frequency: 3
+        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, pin: 17, frequency: 10
 
         ## tombook
         heartbeat.add_webhook('http://192.168.2.104:9292/heartbeat')
