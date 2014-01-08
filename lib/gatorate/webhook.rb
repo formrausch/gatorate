@@ -20,6 +20,8 @@ module Webhook
         warn "!! Could not reach #{hook} |> #{self.class.name}"
       rescue Errno::ECONNREFUSED => e
         warn "!! Could not connect to #{hook} |> #{self.class.name}"
+      rescue Errno::ETIMEDOUT
+        warn "!! Connection Timeout on #{hook} |> #{self.class.name}"
       end
     end
   end
@@ -29,7 +31,11 @@ module Webhook
   end
 
   def post_message(hook_url, payload)
-    HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, json: JSON.dump(payload)
+    begin
+      HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, json: JSON.dump(payload)
+    rescue Errno::ETIMEDOUT
+      warn "!! Connection Timeout on #{hook_url} |> #{self.class.name}"
+    end
   end
 
   def on_notify(hook, payload)
