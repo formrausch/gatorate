@@ -14,7 +14,7 @@ module Gatorate
       read_pin == 1 ? :open : :closed
     end
 
-    def send_webhook(hook_url, payload)
+    def on_notify(hook_url, payload)
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
 
       event = payload

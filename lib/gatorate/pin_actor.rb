@@ -3,6 +3,7 @@ require 'wiringpi'
 
 class PinActor
   include Celluloid
+  include Celluloid::IO
   include Celluloid::Logger
 
   def self.spawn(name=self.actor_name, pin=17, frequency=10)

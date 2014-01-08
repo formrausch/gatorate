@@ -27,16 +27,17 @@ module Gatorate
           gate.check_status
         end
 
-        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, 17, 10 do |beat|
+        heartbeat = Gatorate::Heartbeat.spawn :heartbeat, 17, 3 do |beat|
           beat.on
+          beat.ping
         end
 
         # Lighter
-        door.add_webhook('http://10.0.1.41:9292/events')
+        #door.add_webhook('http://10.0.1.41:9292/events')
 
         # tombook
         heartbeat.add_webhook('http://10.0.1.65:9292/heartbeat')
-        door.add_webhook('http://10.0.1.65:9292/events')
+        #door.add_webhook('http://10.0.1.65:9292/events')
 
         # Doris
         heartbeat.add_webhook('http://formrausch-doris.herokuapp.com/heartbeat')
