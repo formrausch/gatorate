@@ -10,17 +10,21 @@ class Web < Sinatra::Base
   set :run, false
 
   before do
-    @door_node  = DCell::Node.find("door")
+    @door_node  = DCell::Node.find("observe")
     @door       = @door_node.find(:door)
   end
 
   get '/?' do
-    haml :index
+    haml :index, layout: false
   end
 
   get '/status' do
     content_type :json
     { :status => @door.status }.to_json
+  end
+
+  get '/configure' do
+    haml :configure, layout: :layout
   end
 end
 

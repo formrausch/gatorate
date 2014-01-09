@@ -1,0 +1,26 @@
+!!!5
+%html
+  %head
+
+    %meta{ :name => "viewport", :content => "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" }
+    %meta{ :name => "apple-mobile-web-app-capable", :content => "yes" }
+    %meta{ :name => "apple-mobile-web-app-status-bar-style", :content => "black" }
+    %link{:rel => "stylesheet", :href => "http://fonts.googleapis.com/css?family=Lekton:400,700,400italic"}
+    %link{:rel => "stylesheet", :href => "/stylesheets/configure.css"}
+
+    %link{:rel => "apple-touch-icon", :sizes => "144x144", :href => "/images/apple-touch-icon-144x144.png"}
+
+    %link{:rel => "apple-touch-startup-image", :href => "/images/splash-screen-640x960.png"}
+
+    %title
+      Gatorate
+
+  %body#configure
+    = yield
+
+    :plain
+      <script src="/javascripts/libs/jquery-1.10.2.js"></script>
+      <script src="/javascripts/libs/handlebars-1.1.2.js"></script>
+      <script src="/javascripts/libs/ember-1.3.0.js"></script>
+      <script src="/javascripts/configure.js"></script>
+

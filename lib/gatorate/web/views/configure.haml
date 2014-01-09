@@ -1,0 +1,19 @@
+:plain
+  <script type="text/x-handlebars">
+    <h1>Gatorate Webhooks</h2>
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <div class='card'>
+      <h2> Heartbeat </h2>
+      <ul>
+      {{#each item in model}}
+        <li>{{item}}</li>
+      {{/each}}
+      </ul>
+    </div>
+  </script>
+
+

@@ -1,2 +1,3 @@
-* Gem does not build. 
-* Update Readme 
+* Gem does not build.
+* Update Readme
+* Read heartbeats from redis

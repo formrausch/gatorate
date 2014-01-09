@@ -1,0 +1,13 @@
+body {
+  background: #eaedf1;
+  font-family: 'Lekton', sans-serif;
+  padding: 50px
+}
+
+.card {
+  width: 280px;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+

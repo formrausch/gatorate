@@ -23,7 +23,6 @@ module Gatorate
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
       post_message hook_url, type: :heartbeat, timestamp: timestamp
     end
-
   end
 end
 

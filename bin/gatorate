@@ -7,7 +7,7 @@ require 'colorize'
 begin
   require 'gatorate'
 rescue LoadError
-  puts "Using local source".yellow
+  puts "*** Using local source".yellow
   require 'bundler'
   Bundler.setup
   require_relative '../lib/gatorate'
@@ -18,20 +18,29 @@ include GLI::App
 program_desc 'Is the door open?'
 version Gatorate::VERSION
 
+
 desc 'Observe door lock via GPIO-pins'
 command :observe do |c|
-  c.desc 'config file'
-  c.default_value '/etc/gatorate.yml'
-  c.flag [:c, :config]
+  c.desc 'node name'
+  c.default_value 'observe'
+  c.flag [:n, :node]
+
+  c.desc 'door node ip'
+  c.default_value Gatorate::IP.find || '127.0.0.1'
+  c.flag [:i, :ip]
+
+  c.desc 'door dcell port'
+  c.default_value '7777'
+  c.flag [:p, :port]
+
+  c.desc 'redis url'
+  c.default_value 'redis://127.0.0.1:6379/'
+  c.flag [:r, :redis]
+
 
   c.action do |global_options, options, ar|
-    default_config = {
-      "node"  => "door",
-      "ip"    => Gatorate::IP.find || '127.0.0.1',
-      "port"  => 7777
-    }
-    config = YAML.load_file(options[:config]) rescue default_config
-    Gatorate::Observer.new(config)
+    Gatorate::Network.new options
+    Gatorate::Observer.run
   end
 end
 
@@ -46,14 +55,20 @@ command :console do |c|
   c.default_value Gatorate::IP.find || '127.0.0.1'
   c.flag [:i, :ip]
 
-  c.desc 'door noe port'
+  c.desc 'console dcell port'
   c.default_value '7778'
   c.flag [:p, :port]
 
+  c.desc 'redis url'
+  c.default_value 'redis://127.0.0.1:6379/'
+  c.flag [:r, :redis]
+
   c.action do |global_options, options, args|
-    Gatorate::Console.new(options[:node], options[:ip], options[:port])
+    Gatorate::Network.new options
+    Gatorate::Console.new
   end
 end
+
 
 desc 'Run the webserver'
 command :web do |c|
@@ -68,7 +83,7 @@ command :web do |c|
   c.default_value Gatorate::IP.find || '127.0.0.1'
   c.flag [:i, :ip]
 
-  c.desc 'door node port'
+  c.desc 'door dcell port'
   c.default_value '7779'
   c.flag [:p, :port]
 
@@ -76,11 +91,15 @@ command :web do |c|
   c.default_value '9292'
   c.flag [:P, :Port]
 
+  c.desc 'redis url'
+  c.default_value 'redis://127.0.0.1:6379/'
+  c.flag [:r, :redis]
+
 
   c.action do |global_options, options, args|
     require 'thin'
 
-    DCell.start :addr => "tcp://#{options[:ip]}:#{options[:port]}", :id => "#{options[:node]}"
+    Gatorate::Network.new options
 
     server = Thin::Server.new(options[:ip], options[:Port], Web)
     server.log_file = '/var/log/gatorate.log'
@@ -89,5 +108,40 @@ command :web do |c|
     server.start
   end
 end
+
+
+desc 'Access the door via irb console'
+command :explore do |c|
+  c.desc 'node name'
+  c.default_value 'explorer'
+  c.flag [:n, :node]
+
+  c.desc 'door node ip'
+  c.default_value Gatorate::IP.find || '127.0.0.1'
+  c.flag [:i, :ip]
+
+  c.desc 'console dcell port'
+  c.default_value '7780'
+  c.flag [:p, :port]
+
+  c.desc 'redis url'
+  c.default_value 'redis://127.0.0.1:6379/'
+  c.flag [:r, :redis]
+
+  c.desc 'web port'
+  c.default_value '9393'
+  c.flag [:P, :Port]
+
+
+  c.action do |global_options, options, args|
+    require 'dcell/explorer'
+    Gatorate::Network.new options
+
+    DCell::Explorer.new(options[:ip], options[:Port])
+
+    sleep
+  end
+end
+
 
 exit run(ARGV)
