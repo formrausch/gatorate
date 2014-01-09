@@ -14,20 +14,19 @@ The web interface ist available on http://localhost:9292
 
 To connect to another gatorate install (console) just use
 
-  ./bin/gatorate console -r 'redis://10.0.1.164:6379' -p 8888
+  ./bin/gatorate console -r 'redis://10.0.1.164:6379'
 
   or
 
-  ./bin/gatorate web -r 'redis://10.0.1.164:6379' -p 8888
+  ./bin/gatorate web -r 'redis://10.0.1.164:6379'
+
+where redis://10.0.1.164:6379 is the central redis db for the dcell
+network
 
 Installation
 ------------
 
-
     bundle install
-
-
-
 
 Important
 ---------
@@ -48,3 +47,7 @@ Build via
     cd wiringPi
     ./build
 
+
+Install zmq
+
+apt-get install libzmq
