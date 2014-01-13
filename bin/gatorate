@@ -8,8 +8,8 @@ begin
   require 'gatorate'
 rescue LoadError
   puts "*** Using local source".yellow
-  require 'bundler'
-  Bundler.setup
+  #require 'bundler'
+  #Bundler.setup
   require_relative '../lib/gatorate'
 end
 

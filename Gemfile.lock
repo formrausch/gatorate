@@ -12,6 +12,7 @@ PATH
       http
       ipaddress
       json
+      reel (~> 0.4.0)
       rest-client
       sinatra
       smart_colored
@@ -24,7 +25,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    aruba (0.5.3)
+    aruba (0.5.4)
       childprocess (>= 0.3.6)
       cucumber (>= 1.1.1)
       rspec-expectations (>= 2.7.0)
@@ -73,18 +74,18 @@ GEM
     http_parser.rb (0.6.0)
     ipaddress (0.8.0)
     json (1.8.1)
-    metaclass (0.0.1)
+    metaclass (0.0.2)
     mime-types (2.0)
-    mocha (0.14.0)
+    mocha (1.0.0)
       metaclass (~> 0.0.1)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multi_test (0.0.3)
     nio4r (0.5.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
     rake (10.1.1)
-    rdoc (4.1.0)
+    rdoc (4.1.1)
       json (~> 1.4)
     redis (3.0.6)
     redis-namespace (1.4.1)
@@ -110,7 +111,7 @@ GEM
       rack (>= 1.0.0)
     tilt (1.4.1)
     timers (1.1.0)
-    websocket_parser (0.1.4)
+    websocket_parser (0.1.5)
       http
     wiringpi (1.1.0)
     yell (2.0.2)
