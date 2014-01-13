@@ -10,7 +10,7 @@ module Gatorate
     def on
       write_pin HIGH
       channel.push :heartbeat, ping_info
-      after(0.01) { off }
+      after(0.08) { off }
     end
 
     def off
