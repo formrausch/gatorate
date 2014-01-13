@@ -21,7 +21,7 @@ module Gatorate
       new_status = status
 
       if !last_status.nil? && new_status != last_status
-        info "The Doors is now [#{new_status}]"
+        info "The Door is now [#{new_status}]"
         notify_webhooks(new_status)
       end
 
@@ -36,7 +36,7 @@ module Gatorate
       event = payload
       event_hash = {type: event, state_changed_to: event, timestamp: timestamp}
 
-      http_post hook_url, event_hash
+      post_message hook_url, event_hash
     end
 
   end

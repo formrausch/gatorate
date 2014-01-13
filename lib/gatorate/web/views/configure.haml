@@ -1,7 +1,7 @@
 :plain
   <script type="text/x-handlebars">
     <h1>Gatorate Webhooks</h2>
-
+    {{#link-to "posts"}}Posts{{/link-to}}
     {{outlet}}
   </script>
 
@@ -14,6 +14,28 @@
       {{/each}}
       </ul>
     </div>
+  </script>
+
+  <script type="text/x-handlebars" id="posts">
+    <section id="content">
+    123
+    {{ outlet }}
+    </section>
+  </script>
+
+
+  <script type="text/x-handlebars" id="posts/index">
+    <h1>Posts index</h1>
+    {{#each post in content}}
+      <article>
+      <h2>
+        {{#link-to posts.post post}}{{post.title}}{{/link-to}}
+      </h2>
+      <div class="entry-excerpt"> {{post.excerpt}}</div>
+      </article>
+    {{/each}}
+
+
   </script>
 
 

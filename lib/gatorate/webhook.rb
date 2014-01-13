@@ -72,7 +72,7 @@ module Webhook
 
     def send(hook_url, payload)
       begin
-        HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, json: JSON.dump(payload)
+        HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, form: {payload: payload}
         info "➤ Webhook::Message |> #{hook_url} |> #{payload}".green
       rescue Errno::EHOSTUNREACH
         warn "✖ Webhook::Message |> Could not reach #{hook_url} |> #{payload}".red

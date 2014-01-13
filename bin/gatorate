@@ -101,6 +101,7 @@ command :web do |c|
 
     Gatorate::Network.new options
 
+
     server = Thin::Server.new(options[:ip], options[:Port], Web)
     server.log_file = '/var/log/gatorate.log'
     server.pid_file = '/tmp/gatorate.pid'

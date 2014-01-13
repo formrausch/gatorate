@@ -41,6 +41,15 @@ module Gatorate
       actor.hooks
     end
 
+    def open_door!
+      door_actor.notify_webhooks(:open)
+    end
+
+    def close_door!
+      door_actor.notify_webhooks(:closed)
+    end
+
+
     def initialize
       IRB.start_session(binding)
     end
