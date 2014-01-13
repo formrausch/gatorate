@@ -4,27 +4,34 @@ require 'celluloid/io'
 require 'http'
 require 'timeout'
 
+
 module Webhook
   class Repository
-    def initialize(actor)
+    def initialize(actor, namespace='gatorate.webhooks')
       @name = actor.to_s
+      @namespace = namespace
     end
 
+    def key
+      "#{@namespace}.#{@name}"
+    end
+
+
     def all
-      all = redis.smembers @name
+      all = redis.smembers key
       Array(all)
     end
 
     def redis
-     Redis.current
+      Redis.current
     end
 
     def add(url)
-      redis.sadd @name, url
+      redis.sadd key, url
     end
 
     def remove(url)
-      redis.srem @name, url
+      redis.srem key, url
     end
 
     def each
@@ -32,37 +39,22 @@ module Webhook
     end
   end
 
-  module Pusher
+  class Channel
     include Celluloid
-    include Celluloid::IO
 
-    def repository
-      Repository.new(name)
-    end
-
-    def hooks
-      repository.all
-    end
-
-    def name
-      self.class.name.split("::").last.downcase.to_sym
-    end
-
-
-    def notify_webhooks(payload="")
-      hooks.each do |hook|
-        async.on_webhook_notify(hook, payload)
+    def push(channel_name, payload="")
+      hooks(channel_name).each do |hook|
+        Message.new.async.send(hook, payload)
       end
     end
 
-    def post_message(hook_url, payload)
-      Message.new.send(hook_url, payload)
+    def repository(channel_name)
+      Repository.new(channel_name)
     end
 
-    def on_webhook_notify(hook, payload)
-      raise "Please override Webhook::on_webhook_notify".red
+    def hooks(channel_name)
+      repository(channel_name).all
     end
-
   end
 
   class Message
@@ -70,16 +62,32 @@ module Webhook
     include Celluloid::IO
     include Celluloid::Logger
 
+    def color_for_status(code)
+      case code
+      when 0..100
+        :light_blue
+      when 100..299
+        :light_green
+      when 400..499
+        :light_yellow
+      else
+        :light_red
+      end
+    end
+
     def send(hook_url, payload)
       begin
-        HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, form: {payload: payload}
-        info "➤ Webhook::Message |> #{hook_url} |> #{payload}".green
+        request = HTTP.post hook_url, socket_class: Celluloid::IO::TCPSocket, form: {payload: payload}
+
+        msg = "➤ #{request.response.status} Webhook::Message |> #{hook_url} |> #{payload}"
+        info msg.send(color_for_status(request.response.status))
+
       rescue Errno::EHOSTUNREACH
         warn "✖ Webhook::Message |> Could not reach #{hook_url} |> #{payload}".red
       rescue Errno::ECONNREFUSED => e
         warn "✖ Webhook::Message |> Could not connect to #{hook_url} |> #{payload}".red
       rescue Errno::ETIMEDOUT
-        warn "✖ Webhook::Message |> Connection Timeout on #{hook_url} |> #{payload}".yellow
+        warn "✖ Webhook::Message |> Connection Timeout on #{hook_url} |> #{payload}".red
       ensure
         self.terminate
       end

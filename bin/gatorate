@@ -34,7 +34,7 @@ command :observe do |c|
   c.flag [:p, :port]
 
   c.desc 'redis url'
-  c.default_value 'redis://127.0.0.1:6379/'
+  c.default_value ENV["REDIS_URL"] || 'redis://127.0.0.1:6379/'
   c.flag [:r, :redis]
 
 
@@ -60,7 +60,7 @@ command :console do |c|
   c.flag [:p, :port]
 
   c.desc 'redis url'
-  c.default_value 'redis://127.0.0.1:6379/'
+  c.default_value ENV["REDIS_URL"] || 'redis://127.0.0.1:6379/'
   c.flag [:r, :redis]
 
   c.action do |global_options, options, args|
@@ -92,7 +92,7 @@ command :web do |c|
   c.flag [:P, :Port]
 
   c.desc 'redis url'
-  c.default_value 'redis://127.0.0.1:6379/'
+  c.default_value ENV["REDIS_URL"] || 'redis://127.0.0.1:6379/'
   c.flag [:r, :redis]
 
 

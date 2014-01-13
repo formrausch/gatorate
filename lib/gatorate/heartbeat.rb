@@ -9,7 +9,7 @@ module Gatorate
 
     def on
       write_pin HIGH
-      notify_webhooks
+      channel.push :heartbeat, ping_info
       after(0.1) { off }
     end
 
@@ -18,10 +18,9 @@ module Gatorate
       after(@frequency) { on }
     end
 
-
-    def on_webhook_notify(hook_url, payload)
+    def ping_info
       timestamp = Time.now.strftime "%Y-%m-%dT%H:%M:%S%z"
-      post_message hook_url, type: :heartbeat, timestamp: timestamp
+      { type: :heartbeat, timestamp: timestamp }
     end
   end
 end

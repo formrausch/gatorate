@@ -6,8 +6,6 @@ class PinActor
   include Celluloid::IO
   include Celluloid::Logger
 
-  include Webhook::Pusher
-
   def initialize(options)
     @pin = options[:pin]
     @frequency = options[:frequency]
@@ -25,5 +23,9 @@ class PinActor
 
   def write_pin(value)
     io.write(@pin, value)
+  end
+
+  def channel
+    Celluloid::Actor[:channel_actor]
   end
 end

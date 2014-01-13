@@ -8,8 +8,17 @@
 
 module Gatorate
   class Observer < Celluloid::SupervisionGroup
+    supervise Webhook::Channel, as: :channel_actor
+
     supervise Gatorate::Door, as: :door, args: [{pin: 0, frequency: 0.1}]
-    supervise Gatorate::Heartbeat, as: :heartbeat, args: [{pin: 17, frequency: 10}]
+    supervise Gatorate::Heartbeat, as: :heartbeat, args: [{pin: 17, frequency: 1}]
+
+    trap_exit :hello
+
+    def hello
+      puts "*" * 100
+    end
+
    end
 end
 
