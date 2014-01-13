@@ -12,14 +12,6 @@ module Gatorate
 
     supervise Gatorate::Door, as: :door, args: [{pin: 0, frequency: 0.1}]
     supervise Gatorate::Heartbeat, as: :heartbeat, args: [{pin: 17, frequency: 10}]
-
-    trap_exit :hello
-
-    def hello
-      puts "*" * 100
-    end
-
-   end
+  end
 end
-
 
