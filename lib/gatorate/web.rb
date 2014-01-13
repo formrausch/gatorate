@@ -65,8 +65,8 @@ end
 
 
 class Web < Sinatra::Base
-  set :public_folder, './lib/gatorate/web/public'
-  set :views, './lib/gatorate/web/views'
+  set :public_folder, "#{settings.root}/web/public"
+  set :views, "#{settings.root}/web/views"
   set :run, false
 
   configure do
