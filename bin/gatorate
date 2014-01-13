@@ -97,10 +97,9 @@ command :web do |c|
 
 
   c.action do |global_options, options, args|
-    require 'thin'
-
     Gatorate::Network.new options
 
+    require 'thin'
 
     server = Thin::Server.new(options[:ip], options[:Port], Web)
     server.log_file = '/var/log/gatorate.log'
